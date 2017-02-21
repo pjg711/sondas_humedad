@@ -1,0 +1,42 @@
+{
+    "name": "opis-assets/angular",
+    "type": "component",
+    "description": "AngularJS component",
+    "keywords": ["component", "angular"],
+    "homepage": "http://angularjs.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marius Sarca",
+            "email": "marius.sarca@gmail.com"
+        },
+        {
+            "name": "Sorin Sarca",
+            "email": "sarca_sorin@hotmail.com"
+        }
+    ],
+    "config": {
+        "preferred-install": "dist"
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "extra": {
+        "component": {
+            "scripts": [
+                "angular.js"
+            ],
+            "files": [
+                "*.js",
+                "*.css",
+                "*.map",
+                "i18n/*"
+            ],
+            "shim": {
+                "exports": "angular"
+            }
+        },
+        "branch-alias": {
+            "dev-master": "1.6.x-dev"
+        }
+    }
+}

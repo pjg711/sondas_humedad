@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+{% block title %}{{ config_php.TITULO }}{% endblock %}
+{% block head %}{{ parent() }}{% endblock %}
+{% block content %}
+    <!-- informacion de login -->
+    {% if Login.getLoginSession %}
+        {{ m_login.logged(Login.getUserActive, Login.getIsAdmin) }}
+        {% if Login.getIsAdmin %}
+            <div class="tab-content">
+                <div id="exportacion" class="tab-pane fade in active">
+                    <!-- Primer panel admin -->
+                    {{ m_users.new_user() }}
+                    {% if users is defined %}
+                        {{ m_users.users_list(users) }}
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="tab-content">
+                <div id="exportacion" class="tab-pane fade in active">
+                    <!-- listado de usuarios -->
+                    <!-- Primer panel -->
+                    {% if users is defined %}
+                        {{ m_users.users_list(users) }}
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <!-- pido usuario y contraseña -->
+        {{ m_login.login('/login', _context) }}
+    {% endif %}
+{% endblock %}
+{% block footer %}{{ parent() }}{% endblock %}

@@ -1,0 +1,55 @@
+{% import "macros/m_login.twig" as m_login %}
+{% import "macros/m_general.twig" as m_users %}
+<!doctype html>
+<html ng-app="sondasApp">
+<head>
+    {% block head %}
+    <meta name="google-site-verification" content="4ICx_x8s8IurLmbe5UCa5hd97QlC3F2zfv8AyZvbLts">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta http-equiv="cache-control" content="max-age=0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="author" content="Pablo Julian Garcia">
+    <meta name="keywords" content="Seedmech alerta sondas">
+    <meta name="description" content="Sistema para sondas de humedad de suelo">
+    <title>{% block title %}{{ config_php.TITULO }}{% endblock %}</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/lib/vendor/twbs/bootstrap/dist/css/bootstrap.css">
+    <script src="/lib/vendor/components/jquery/jquery.js"></script>
+    <script src="/lib/vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- fin bootstrap -->
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="/lib/vendor/components/font-awesome/css/font-awesome.min.css">
+    <!-- fin fontawesome -->
+    <!-- angularjs -->
+    <script src="/lib/vendor/opis-assets/angular/angular.js"></script>
+    <!-- fin angularjs -->
+    <!-- toastr -->
+    <link rel="stylesheet" type="text/css" href="/lib/vendor/grimmlink/toastr/build/toastr.min.css">
+    <script type="text/javascript" src="/lib/vendor/grimmlink/toastr/build/toastr.min.js"></script>
+    <!-- fin toastr -->
+    <!-- pikaday -->
+    <link rel="stylesheet" type="text/css" href="/lib/vendor/rhubarbphp/pikaday/css/pikaday.css">
+    <script type="text/javascript" src="/lib/vendor/rhubarbphp/pikaday/pikaday.js"></script>
+    <!-- fin pikaday -->
+    <!-- estilos propios -->
+    <link rel="stylesheet" type="text/css" href="{{ config.PROTOCOLO }}{{ config.WWW_ROOT }}/templates/{{ config.TEMPLATE }}/css/styles.css">
+    <!-- <script src="/templates/{{ config.TEMPLATE }}/js/functions.js"></script> -->
+    <script src="/templates/{{ config.TEMPLATE }}/js/app.js"></script>
+    <!-- fin estilos propios -->
+    {% endblock %}
+</head>
+<body ng-controller="mainController">
+    {% block content %}{% endblock %}
+    {% block footer %}
+    <div class="navbar navbar-fixed-bottom">
+        <div class="row" style="width: 100%; height: 50px; border:1px solid gray; background-color: #dadada; color: #0086b3; vertical-align: middle;">
+            <div class="col-md-4 text-right"><a href="{{ config.pagina.WEB }}"><img src="{{ config.PROTOCOLO }}{{ config.WWW_ROOT }}/templates/{{ config.TEMPLATE }}/img/seedmech.png"></a></div>
+            <div class="col-md-8 text-left">{{ config.pagina.PIE }}</div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
