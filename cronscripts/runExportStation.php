@@ -22,9 +22,6 @@ if($users=Users::getAll(true))
                     $station->loadSensors($BD);
                     $stationSensorsList = $station->getAvailableSensors();
                     $q_config = $station->getConfig();
-                    //var_dump($q_config);
-                    //exit;
-                    //
                     if( $q_config->getEnable() )
                     {
                         echo "\n-------------------------------------------------------\n";
@@ -41,7 +38,7 @@ if($users=Users::getAll(true))
                         $enca1 = "";
                         $enca2 = "FECHA";
                         list($querys, $enca1, $enca2) = $q_config->runQuery($BD, $station);
-                        if(!empty($querys))
+                        if( !empty($querys) )
                         {
                             foreach( $querys as $key_query => $query )
                             {
@@ -61,7 +58,7 @@ if($users=Users::getAll(true))
                                 fwrite($fp,$enca1."\n");
                                 fwrite($fp,$enca2."\n");
                             }
-                            foreach ($datas as $fecha => $data)
+                            foreach( $datas as $fecha => $data )
                             {
                                 $cadena = date("Y-m-d H:i:s",$fecha).$q_config->getSeparador2();
                                 foreach( $data as $valor )

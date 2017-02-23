@@ -24,91 +24,96 @@ class __TwigTemplate_41a619116ef36e95f47cec4d39fd3fa2a24b733be6bbd5b7915133d84c7
 
     protected function doDisplay(array $context, array $blocks = array())
     {
+        // line 2
+        $context["m_login"] = $this->loadTemplate("macros/m_login.twig", "index.twig", 2);
+        // line 3
+        $context["m_users"] = $this->loadTemplate("macros/m_general.twig", "index.twig", 3);
+        // line 1
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 2
+    // line 4
     public function block_title($context, array $blocks = array())
     {
-        echo $this->getAttribute((isset($context["config_php"]) ? $context["config_php"] : null), "TITULO", array());
+        echo $this->getAttribute((isset($context["config"]) ? $context["config"] : null), "TITULO", array());
     }
 
-    // line 3
+    // line 5
     public function block_head($context, array $blocks = array())
     {
         $this->displayParentBlock("head", $context, $blocks);
     }
 
-    // line 4
+    // line 6
     public function block_content($context, array $blocks = array())
     {
-        // line 5
+        // line 7
         echo "    <!-- informacion de login -->
     ";
-        // line 6
+        // line 8
         if ($this->getAttribute((isset($context["Login"]) ? $context["Login"] : null), "getLoginSession", array())) {
-            // line 7
+            // line 9
             echo "        ";
-            echo $this->getAttribute((isset($context["m_login"]) ? $context["m_login"] : null), "logged", array(0 => $this->getAttribute((isset($context["Login"]) ? $context["Login"] : null), "getUserActive", array()), 1 => $this->getAttribute((isset($context["Login"]) ? $context["Login"] : null), "getIsAdmin", array())), "method");
+            echo $context["m_login"]->getlogged($this->getAttribute((isset($context["Login"]) ? $context["Login"] : null), "getUserActive", array()), $this->getAttribute((isset($context["Login"]) ? $context["Login"] : null), "getIsAdmin", array()));
             echo "
         ";
-            // line 8
+            // line 10
             if ($this->getAttribute((isset($context["Login"]) ? $context["Login"] : null), "getIsAdmin", array())) {
-                // line 9
+                // line 11
                 echo "            <div class=\"tab-content\">
                 <div id=\"exportacion\" class=\"tab-pane fade in active\">
                     <!-- Primer panel admin -->
                     ";
-                // line 12
-                echo $this->getAttribute((isset($context["m_users"]) ? $context["m_users"] : null), "new_user", array(), "method");
+                // line 14
+                echo $context["m_users"]->getnew_user();
                 echo "
                     ";
-                // line 13
+                // line 15
                 if (array_key_exists("users", $context)) {
-                    // line 14
+                    // line 16
                     echo "                        ";
-                    echo $this->getAttribute((isset($context["m_users"]) ? $context["m_users"] : null), "users_list", array(0 => (isset($context["users"]) ? $context["users"] : null)), "method");
+                    echo $context["m_users"]->getusers_list((isset($context["users"]) ? $context["users"] : null), (isset($context["config"]) ? $context["config"] : null));
                     echo "
                     ";
                 }
-                // line 16
+                // line 18
                 echo "                </div>
             </div>
         ";
             } else {
-                // line 19
+                // line 21
                 echo "            <div class=\"tab-content\">
                 <div id=\"exportacion\" class=\"tab-pane fade in active\">
                     <!-- listado de usuarios -->
                     <!-- Primer panel -->
                     ";
-                // line 23
+                // line 25
                 if (array_key_exists("users", $context)) {
-                    // line 24
+                    // line 26
                     echo "                        ";
-                    echo $this->getAttribute((isset($context["m_users"]) ? $context["m_users"] : null), "users_list", array(0 => (isset($context["users"]) ? $context["users"] : null)), "method");
+                    echo $context["m_users"]->getusers_list((isset($context["users"]) ? $context["users"] : null), (isset($context["config"]) ? $context["config"] : null));
                     echo "
                     ";
                 }
-                // line 26
+                // line 28
                 echo "                </div>
             </div>
         ";
             }
-            // line 29
+            // line 31
             echo "    ";
         } else {
-            // line 30
+            // line 32
             echo "        <!-- pido usuario y contraseña -->
         ";
-            // line 31
-            echo $this->getAttribute((isset($context["m_login"]) ? $context["m_login"] : null), "login", array(0 => "/login", 1 => $context), "method");
+            // line 33
+            echo $context["m_login"]->getlogin("/login", $context);
             echo "
     ";
         }
     }
 
-    // line 34
+    // line 36
     public function block_footer($context, array $blocks = array())
     {
         $this->displayParentBlock("footer", $context, $blocks);
@@ -126,7 +131,7 @@ class __TwigTemplate_41a619116ef36e95f47cec4d39fd3fa2a24b733be6bbd5b7915133d84c7
 
     public function getDebugInfo()
     {
-        return array (  112 => 34,  105 => 31,  102 => 30,  99 => 29,  94 => 26,  88 => 24,  86 => 23,  80 => 19,  75 => 16,  69 => 14,  67 => 13,  63 => 12,  58 => 9,  56 => 8,  51 => 7,  49 => 6,  46 => 5,  43 => 4,  37 => 3,  31 => 2,  11 => 1,);
+        return array (  117 => 36,  110 => 33,  107 => 32,  104 => 31,  99 => 28,  93 => 26,  91 => 25,  85 => 21,  80 => 18,  74 => 16,  72 => 15,  68 => 14,  63 => 11,  61 => 10,  56 => 9,  54 => 8,  51 => 7,  48 => 6,  42 => 5,  36 => 4,  32 => 1,  30 => 3,  28 => 2,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -140,7 +145,9 @@ class __TwigTemplate_41a619116ef36e95f47cec4d39fd3fa2a24b733be6bbd5b7915133d84c7
     public function getSourceContext()
     {
         return new Twig_Source("{% extends \"base.twig\" %}
-{% block title %}{{ config_php.TITULO }}{% endblock %}
+{% import \"macros/m_login.twig\" as m_login %}
+{% import \"macros/m_general.twig\" as m_users %}
+{% block title %}{{ config.TITULO }}{% endblock %}
 {% block head %}{{ parent() }}{% endblock %}
 {% block content %}
     <!-- informacion de login -->
@@ -152,7 +159,7 @@ class __TwigTemplate_41a619116ef36e95f47cec4d39fd3fa2a24b733be6bbd5b7915133d84c7
                     <!-- Primer panel admin -->
                     {{ m_users.new_user() }}
                     {% if users is defined %}
-                        {{ m_users.users_list(users) }}
+                        {{ m_users.users_list(users, config) }}
                     {% endif %}
                 </div>
             </div>
@@ -162,7 +169,7 @@ class __TwigTemplate_41a619116ef36e95f47cec4d39fd3fa2a24b733be6bbd5b7915133d84c7
                     <!-- listado de usuarios -->
                     <!-- Primer panel -->
                     {% if users is defined %}
-                        {{ m_users.users_list(users) }}
+                        {{ m_users.users_list(users, config) }}
                     {% endif %}
                 </div>
             </div>

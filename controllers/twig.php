@@ -28,9 +28,9 @@ $twig->addFilter(new Twig_SimpleFilter('truncate', function ($phrase, $max_words
 // die
 $twig->addFilter(new Twig_SimpleFilter('die', function ()
 {
-	exit();
-}));	
-// html_replace 
+	 exit();
+}));
+// html_replace
 $twig->addFilter(new Twig_SimpleFilter('html_replace', function ($cadena)
 {
 	return preg_replace("/<[^>]*>(.*?)<\/>/"," ",$cadena);
@@ -95,12 +95,30 @@ $twig->addFilter(new Twig_SimpleFilter("arroba", function ($mail)
 $twig->addFilter(new Twig_SimpleFilter("unicode", function ($str)
 {
     return preg_replace('/u([\da-fA-F]{4})/', '&#x\1;', $str);
-    //return html_entity_decode(preg_replace("/U\+([0-9A-F]{4})/", "&#x\\1;", $str), ENT_NOQUOTES, 'UTF-8');
 }));
-// **************************************************************************************** 
+// json_decode
+$twig->addFilter(new Twig_SimpleFilter("json_decode", function ($cadena)
+{
+    return json_decode($cadena);
+}));
+$twig->addFilter(new Twig_SimpleFilter("objectFilter", function ($stdClassObject)
+{
+    return (array)$stdClassObject;
+}));
+$twig->addFilter( new Twig_SimpleFilter('cast_to_array', function ($stdClassObject)
+{
+    $response = array();
+    foreach ($stdClassObject as $key => $value)
+    {
+        //echo "key-->{$key}--->{$value}<br>";
+        $response[] = array((string) $key, (string) $value);
+    }
+    return $response;
+}));
+// ****************************************************************************************
 // test
 // ****************************************************************************************
-$twig->addTest(new Twig_SimpleTest("ondisk", function ($file) 
+$twig->addTest(new Twig_SimpleTest("ondisk", function ($file)
 {
     return file_exists($file);
 }));
@@ -144,10 +162,12 @@ $twig->addFunction(new Twig_SimpleFunction('autores_negrita', function ($integra
     return substr($autores3,0,-1);
 }));
 // json_decode
+/*
 $twig->addFunction(new Twig_SimpleFunction('json_decode', function($cadena=null)
 {
     return json_decode($cadena);
 }));
+*/
 // existe archivo?
 $twig->addFunction(new Twig_SimpleFunction('file_exists', function($archivo=null)
 {
@@ -158,7 +178,7 @@ $twig->addFunction(new Twig_SimpleFunction('file_exists', function($archivo=null
 $twig->addFunction(new Twig_SimpleFunction('listar', function($dir=null)
 {
     if(is_null($dir)) return false;
-    if(is_dir($dir)) 
+    if(is_dir($dir))
     {
         if($dh = opendir($dir))
         {

@@ -31,10 +31,11 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
     }
 
     // line 1
-    public function getusers_list($__users__ = null, ...$__varargs__)
+    public function getusers_list($__users__ = null, $__config__ = null, ...$__varargs__)
     {
         $context = $this->env->mergeGlobals(array(
             "users" => $__users__,
+            "config" => $__config__,
             "varargs" => $__varargs__,
         ));
 
@@ -185,7 +186,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                 echo "                                ";
                 // line 77
                 echo "                                ";
-                echo $this->getAttribute($this, "stations_listAll", array(0 => $context["user"]), "method");
+                echo $this->getAttribute($this, "stations_listAll", array(0 => $context["user"], 1 => (isset($context["config"]) ? $context["config"] : null)), "method");
                 echo "
                             ";
                 // line 79
@@ -632,10 +633,11 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
     }
 
     // line 297
-    public function getstations_listAll($__user__ = null, ...$__varargs__)
+    public function getstations_listAll($__user__ = null, $__config__ = null, ...$__varargs__)
     {
         $context = $this->env->mergeGlobals(array(
             "user" => $__user__,
+            "config" => $__config__,
             "varargs" => $__varargs__,
         ));
 
@@ -665,8 +667,28 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
             $context['_seq'] = twig_ensure_traversable((isset($context["stations"]) ? $context["stations"] : null));
             foreach ($context['_seq'] as $context["_key"] => $context["station"]) {
                 // line 311
+                echo "                ";
+                $context["q_config"] = $this->getAttribute($context["station"], "getConfig", array(), "method");
+                // line 312
+                echo "                ";
+                if ($this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getEnable", array(), "method")) {
+                    // line 313
+                    echo "                    ";
+                    $context["color_background"] = "#A1D490";
+                    // line 314
+                    echo "                ";
+                } else {
+                    // line 315
+                    echo "                    ";
+                    $context["color_background"] = "white";
+                    // line 316
+                    echo "                ";
+                }
+                // line 317
                 echo "                <option value=\"station_";
                 echo $this->getAttribute($context["station"], "getRowId", array(), "method");
+                echo "\" style=\"background-color: ";
+                echo (isset($context["color_background"]) ? $context["color_background"] : null);
                 echo "\">";
                 echo $this->getAttribute($context["station"], "getFName", array(), "method");
                 echo " - ";
@@ -677,25 +699,25 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['station'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 313
+            // line 319
             echo "            </select>
         </div>
     </div><!-- /container -->
     ";
-            // line 316
+            // line 322
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["stations"]) ? $context["stations"] : null));
             foreach ($context['_seq'] as $context["_key"] => $context["station"]) {
-                // line 317
+                // line 323
                 echo "        ";
                 $context["load2"] = $this->getAttribute($context["station"], "loadSensors", array(0 => $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "getImetos", array(), "method")), "method");
-                // line 318
+                // line 324
                 echo "        ";
                 $context["stationSensorsList"] = $this->getAttribute($context["station"], "getAvailableSensors", array(), "method");
-                // line 319
+                // line 325
                 echo "        ";
                 $context["q_config"] = $this->getAttribute($context["station"], "getConfig", array(), "method");
-                // line 320
+                // line 326
                 echo "        <div ng-show=\"select_station=='station_";
                 echo $this->getAttribute($context["station"], "getRowId", array(), "method");
                 echo "'\" class=\"info-sensores\" id=\"station_";
@@ -704,55 +726,55 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
             <div class=\"container\">
                 <hr class=\"\">
                 <form class=\"form-horizontal\" role=\"form\" method=\"post\" action=\"/stations/config/";
-                // line 323
+                // line 329
                 echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
                 echo "\">
                     <div class=\"row\">
                         <input type=\"hidden\" id=\"userid\" name=\"userid\" value=\"";
-                // line 325
+                // line 331
                 echo $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "getId", array(), "method");
                 echo "\">
                         <input type=\"hidden\" id=\"f_station_code\" name=\"f_station_code\" value=\"";
-                // line 326
+                // line 332
                 echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
                 echo "\">
                         <div class=\"col-md-9 text-left\">
                             ";
-                // line 328
+                // line 334
                 if ($this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getEnable", array(), "method")) {
-                    // line 329
+                    // line 335
                     echo "                                ";
-                    // line 330
+                    // line 336
                     echo "                                ";
                     $context["disabled"] = "";
-                    // line 331
+                    // line 337
                     echo "                                ";
                     $context["label"] = "label-enabled";
-                    // line 332
+                    // line 338
                     echo "                                <input class=\"nadas\" type=\"checkbox\" id=\"activar\" name=\"enable\" checked=\"\" ng-click=\"station_active(this,'station_";
                     echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
                     echo "');\">&nbsp;Activar Estaci&oacute;n
                             ";
                 } else {
-                    // line 334
+                    // line 340
                     echo "                                ";
-                    // line 335
+                    // line 341
                     echo "                                ";
                     $context["disabled"] = "disabled";
-                    // line 336
+                    // line 342
                     echo "                                ";
                     $context["label"] = "label-disabled";
-                    // line 337
+                    // line 343
                     echo "                                <input class=\"nadas\" type=\"checkbox\" id=\"activar\" name=\"enable\" ng-click=\"station_active(this,'station_";
                     echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
                     echo "');\">&nbsp;Activar Estaci&oacute;n
                             ";
                 }
-                // line 339
+                // line 345
                 echo "                        </div>
                         <div class=\"col-md-12\">
                             <h3>";
-                // line 341
+                // line 347
                 echo $this->getAttribute($context["station"], "getFName", array(), "method");
                 echo " - ";
                 echo $this->getAttribute($context["station"], "getName", array(), "method");
@@ -766,7 +788,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                                 </div>
                                 <div class=\"panel-body text-left\">
                                     <input class=\"sensores\" type=\"checkbox\" id=\"sensor-todos-";
-                // line 350
+                // line 356
                 echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
                 echo "\" ng-click=\"checkAll('";
                 echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
@@ -776,14 +798,14 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                 echo (isset($context["disabled"]) ? $context["disabled"] : null);
                 echo ">&nbsp;Todos</label><br>
                                     ";
-                // line 351
+                // line 357
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["stationSensorsList"]) ? $context["stationSensorsList"] : null), "enabled", array(), "array"));
                 foreach ($context['_seq'] as $context["key_sensor"] => $context["sensor"]) {
-                    // line 352
+                    // line 358
                     echo "                                        ";
                     if (twig_in_filter($context["key_sensor"], $this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getSensores", array(), "method"))) {
-                        // line 353
+                        // line 359
                         echo "                                            <input class=\"sensores-todos\" type=\"checkbox\" id=\"sensor-";
                         echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
                         echo "\" name=\"sensor_";
@@ -797,7 +819,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         echo "</label><br>
                                         ";
                     } else {
-                        // line 355
+                        // line 361
                         echo "                                            <input class=\"sensores-todos\" type=\"checkbox\" id=\"sensor-";
                         echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
                         echo "\" name=\"sensor_";
@@ -811,13 +833,13 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         echo "</label><br>
                                         ";
                     }
-                    // line 357
+                    // line 363
                     echo "                                    ";
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['key_sensor'], $context['sensor'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 358
+                // line 364
                 echo "                                </div><!-- /panel-body -->
                             </div><!-- /panel panel-default -->
                         </div><!-- /col-md-4 -->
@@ -830,14 +852,14 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                                     <!-- Periodo a descargar : periodo, mes_actual, todos, fijo -->
                                     <div class=\"form-group\">
                                         <label for=\"";
-                // line 369
+                // line 375
                 echo (isset($context["label"]) ? $context["label"] : null);
                 echo "\">Per&iacute;odo a descargar:</label><br>
                                         <label class=\"radio-inline\">
                                         ";
-                // line 371
+                // line 377
                 if (($this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getPeriodo", array(), "method") == "periodo")) {
-                    // line 372
+                    // line 378
                     echo "                                            <input class=\"todos\" type=\"radio\" name=\"periodo\" id=\"descarga_periodo\" value=\"periodo\" checked=\"\" ";
                     echo (isset($context["disabled"]) ? $context["disabled"] : null);
                     echo ">&nbsp;<label for=\"";
@@ -845,7 +867,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                     echo "\">Descarga de datos desde</label>
                                         ";
                 } else {
-                    // line 374
+                    // line 380
                     echo "                                            <input class=\"todos\" type=\"radio\" name=\"periodo\" id=\"descarga_periodo\" value=\"periodo\" ";
                     echo (isset($context["disabled"]) ? $context["disabled"] : null);
                     echo ">&nbsp;<label for=\"";
@@ -853,10 +875,10 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                     echo "\">Descarga de datos desde</label>
                                         ";
                 }
-                // line 376
+                // line 382
                 echo "                                        </label><br>
                                         <label for=\"";
-                // line 377
+                // line 383
                 echo (isset($context["label"]) ? $context["label"] : null);
                 echo "\">Fecha inicial:&nbsp;</label><input type=\"text\" class=\"todos\" name=\"fecha_inicial\" id=\"fecha_inicial\" value=\"";
                 echo $this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getPeriodoFechaInicial", array(), "method");
@@ -866,7 +888,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                 echo (isset($context["label"]) ? $context["label"] : null);
                 echo "\">(dd/mm/aaaa)</label><br>
                                         <label for=\"";
-                // line 378
+                // line 384
                 echo (isset($context["label"]) ? $context["label"] : null);
                 echo "\">Fecha final:&nbsp;</label><input type=\"text\" class=\"todos\" name=\"fecha_final\" id=\"fecha_final\" value=\"";
                 echo $this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getPeriodoFechaFinal", array(), "method");
@@ -877,9 +899,9 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                 echo "\">(dd/mm/aaaa)</label><br>
                                         <label class=\"radio-inline\">
                                         ";
-                // line 380
+                // line 386
                 if (($this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getPeriodo", array(), "method") == "mes_actual")) {
-                    // line 381
+                    // line 387
                     echo "                                            <input class=\"todos\" type=\"radio\" name=\"periodo\" id=\"mes_actual\" value=\"mes_actual\" checked=\"\" ";
                     echo (isset($context["disabled"]) ? $context["disabled"] : null);
                     echo ">&nbsp;<label for=\"";
@@ -887,7 +909,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                     echo "\">Mes actual</label>
                                         ";
                 } else {
-                    // line 383
+                    // line 389
                     echo "                                            <input class=\"todos\" type=\"radio\" name=\"periodo\" id=\"mes_actual\" value=\"mes_actual\" ";
                     echo (isset($context["disabled"]) ? $context["disabled"] : null);
                     echo ">&nbsp;<label for=\"";
@@ -895,13 +917,13 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                     echo "\">Mes actual</label>
                                         ";
                 }
-                // line 385
+                // line 391
                 echo "                                        </label><br>
                                         <label class=\"radio-inline\">
                                         ";
-                // line 387
+                // line 393
                 if (($this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getPeriodo", array(), "method") == "todos")) {
-                    // line 388
+                    // line 394
                     echo "                                            <input class=\"todos\" type=\"radio\" name=\"periodo\" id=\"todos2\" value=\"todos\" checked=\"\" ";
                     echo (isset($context["disabled"]) ? $context["disabled"] : null);
                     echo ">&nbsp;<label for=\"";
@@ -909,7 +931,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                     echo "\">Desde el principio</label>
                                         ";
                 } else {
-                    // line 390
+                    // line 396
                     echo "                                            <input class=\"todos\" type=\"radio\" name=\"periodo\" id=\"todos2\" value=\"todos\" ";
                     echo (isset($context["disabled"]) ? $context["disabled"] : null);
                     echo ">&nbsp;<label for=\"";
@@ -917,13 +939,13 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                     echo "\">Desde el principio</label>
                                         ";
                 }
-                // line 392
+                // line 398
                 echo "                                        </label><br>
                                         <label class=\"radio-inline\">
                                         ";
-                // line 394
+                // line 400
                 if (($this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getPeriodo", array(), "method") == "fijo")) {
-                    // line 395
+                    // line 401
                     echo "                                            <input class=\"todos\" type=\"radio\" name=\"periodo\" id=\"fijo\" value=\"fijo\" checked=\"\" ";
                     echo (isset($context["disabled"]) ? $context["disabled"] : null);
                     echo ">&nbsp;<label for=\"";
@@ -935,7 +957,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                     echo "\">&nbsp;d&iacute;as</label>
                                         ";
                 } else {
-                    // line 397
+                    // line 403
                     echo "                                            <input class=\"todos\" type=\"radio\" name=\"periodo\" id=\"fijo\" value=\"fijo\" ";
                     echo (isset($context["disabled"]) ? $context["disabled"] : null);
                     echo ">&nbsp;<label for=\"";
@@ -947,29 +969,29 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                     echo "\">&nbsp;d&iacute;as</label>
                                         ";
                 }
-                // line 399
+                // line 405
                 echo "                                        </label>
                                     </div>
                                     <!-- Tipo de archivo a exportar -->
                                     <div class=\"form-group\">
                                         <label for=\"";
-                // line 403
+                // line 409
                 echo (isset($context["label"]) ? $context["label"] : null);
                 echo "\">Exportar a tipo de archivo:</label><br>
                                         ";
-                // line 404
-                $context["tipos_archivos"] = call_user_func_array($this->env->getFunction('json_decode')->getCallable(), array($this->getAttribute((isset($context["config_php"]) ? $context["config_php"] : null), "TIPOS_ARCHIVOS", array())));
-                // line 405
+                // line 410
+                $context["tipos_archivos"] = call_user_func_array($this->env->getFilter('json_decode')->getCallable(), array($this->getAttribute((isset($context["config"]) ? $context["config"] : null), "TIPOS_ARCHIVOS", array())));
+                // line 411
                 echo "                                        ";
                 $context['_parent'] = $context;
-                $context['_seq'] = twig_ensure_traversable((isset($context["tipos_archivos"]) ? $context["tipos_archivos"] : null));
+                $context['_seq'] = twig_ensure_traversable(call_user_func_array($this->env->getFilter('objectFilter')->getCallable(), array((isset($context["tipos_archivos"]) ? $context["tipos_archivos"] : null))));
                 foreach ($context['_seq'] as $context["key_tipo_archivo"] => $context["tipo_archivo"]) {
-                    // line 406
+                    // line 412
                     echo "                                            <label class=\"radio-inline\">
                                             ";
-                    // line 407
+                    // line 413
                     if (($this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getTipoArchivo", array(), "method") == $context["key_tipo_archivo"])) {
-                        // line 408
+                        // line 414
                         echo "                                                <input class=\"todos\" type=\"radio\" name=\"tipo_archivo\" id=\"archivo_";
                         echo $context["key_tipo_archivo"];
                         echo "\" value=\"";
@@ -983,7 +1005,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         echo "</label>
                                             ";
                     } else {
-                        // line 410
+                        // line 416
                         echo "                                                <input class=\"todos\" type=\"radio\" name=\"tipo_archivo\" id=\"archivo_";
                         echo $context["key_tipo_archivo"];
                         echo "\" value=\"";
@@ -997,36 +1019,36 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         echo "</label>
                                             ";
                     }
-                    // line 412
+                    // line 418
                     echo "                                            </label>
                                         ";
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['key_tipo_archivo'], $context['tipo_archivo'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 414
+                // line 420
                 echo "                                    </div><!-- form-grupo -->
                                     ";
-                // line 416
+                // line 422
                 echo "                                    <div class=\"form-group\">
                                         <label for=\"";
-                // line 417
+                // line 423
                 echo (isset($context["label"]) ? $context["label"] : null);
                 echo "\">Separar columnas por:</label><br>
                                         ";
-                // line 418
-                $context["separadores"] = call_user_func_array($this->env->getFunction('json_decode')->getCallable(), array($this->getAttribute((isset($context["config_php"]) ? $context["config_php"] : null), "SEPARADORES", array())));
-                // line 419
+                // line 424
+                $context["separadores"] = call_user_func_array($this->env->getFilter('json_decode')->getCallable(), array($this->getAttribute((isset($context["config"]) ? $context["config"] : null), "SEPARADORES", array())));
+                // line 425
                 echo "                                        ";
                 $context['_parent'] = $context;
-                $context['_seq'] = twig_ensure_traversable((isset($context["separadores"]) ? $context["separadores"] : null));
+                $context['_seq'] = twig_ensure_traversable(call_user_func_array($this->env->getFilter('objectFilter')->getCallable(), array((isset($context["separadores"]) ? $context["separadores"] : null))));
                 foreach ($context['_seq'] as $context["key_separador"] => $context["separador"]) {
-                    // line 420
+                    // line 426
                     echo "                                            <label class=\"radio-inline\">
                                             ";
-                    // line 421
+                    // line 427
                     if (($this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getSeparador", array(), "method") == $context["key_separador"])) {
-                        // line 422
+                        // line 428
                         echo "                                                <input class=\"todos\" type=\"radio\" id=\"coma\" name=\"separador\" value=\"";
                         echo $context["key_separador"];
                         echo "\" checked=\"\" ";
@@ -1038,7 +1060,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         echo "</label>
                                             ";
                     } else {
-                        // line 424
+                        // line 430
                         echo "                                                <input class=\"todos\" type=\"radio\" id=\"coma\" name=\"separador\" value=\"";
                         echo $context["key_separador"];
                         echo "\" ";
@@ -1050,36 +1072,36 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         echo "</label>
                                             ";
                     }
-                    // line 426
+                    // line 432
                     echo "                                            </label><br>
                                         ";
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['key_separador'], $context['separador'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 428
+                // line 434
                 echo "                                    </div><!-- form-grupo -->
                                     ";
-                // line 430
+                // line 436
                 echo "                                    ";
                 $context["encabezados"] = array("si" => "Si", "no" => "No");
-                // line 431
+                // line 437
                 echo "                                    <div class=\"form-group\">
                                         <label for=\"";
-                // line 432
+                // line 438
                 echo (isset($context["label"]) ? $context["label"] : null);
                 echo "\">Agregar encabezado:</label><br>
                                         ";
-                // line 433
+                // line 439
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable((isset($context["encabezados"]) ? $context["encabezados"] : null));
                 foreach ($context['_seq'] as $context["key_enca"] => $context["encabezado"]) {
-                    // line 434
+                    // line 440
                     echo "                                            <label class=\"radio-inline\">
                                             ";
-                    // line 435
+                    // line 441
                     if (($this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getEncabezado", array(), "method") == $context["key_enca"])) {
-                        // line 436
+                        // line 442
                         echo "                                              <input class=\"todos\" type=\"radio\" id=\"encabezado_si\" name=\"encabezado\" value=\"";
                         echo $context["key_enca"];
                         echo "\" checked=\"\" ";
@@ -1091,7 +1113,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         echo "</label>&nbsp;&nbsp;
                                             ";
                     } else {
-                        // line 438
+                        // line 444
                         echo "                                              <input class=\"todos\" type=\"radio\" id=\"encabezado_si\" name=\"encabezado\" value=\"";
                         echo $context["key_enca"];
                         echo "\" ";
@@ -1103,38 +1125,38 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         echo "</label>&nbsp;&nbsp;
                                             ";
                     }
-                    // line 440
+                    // line 446
                     echo "                                            </label>
                                         ";
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['key_enca'], $context['encabezado'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 442
+                // line 448
                 echo "                                    </div><!-- /form-group -->
                                     ";
-                // line 444
+                // line 450
                 echo "                                    <div class=\"form-group\">
                                         <label for=\"";
-                // line 445
+                // line 451
                 echo (isset($context["label"]) ? $context["label"] : null);
-                echo "\">Nombre de archivo (sin extension):</label><br>
+                echo "\">Nombre de archivo (sin extensi&oacute;n):</label><br>
                                         <input class=\"todos\" type=\"text\" id=\"archivo\" name=\"archivo\" value=\"";
-                // line 446
+                // line 452
                 echo $this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getNombreArchivo", array(), "method");
                 echo "\" size=\"40\" maxlength=\"50\" ";
                 echo (isset($context["disabled"]) ? $context["disabled"] : null);
                 echo ">
                                     </div>
                                     ";
-                // line 449
+                // line 455
                 echo "                                    <div class=\"form-group\">
                                         <label for=\"";
-                // line 450
+                // line 456
                 echo (isset($context["label"]) ? $context["label"] : null);
                 echo "\">Ubicaci&oacute;n web para enlazar archivo:</label><br>
                                         <label for=\"";
-                // line 451
+                // line 457
                 echo (isset($context["label"]) ? $context["label"] : null);
                 echo "\">";
                 echo $this->getAttribute((isset($context["q_config"]) ? $context["q_config"] : null), "getUbicacionWeb", array(), "method");
@@ -1148,23 +1170,32 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         <div class=\"col-md-4 text-right\"></div>
                         <div class=\"col-md-8\">
                             <div class=\"pull-right\">
+                                <button type=\"button\" name=\"export_data\" class=\"btn btn-default\" ng-click=\"form_new('POST','/stations/export/";
+                // line 467
+                echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
+                echo "/";
+                echo $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "getId", array(), "method");
+                echo "')\"><i class=\"fa fa-table\" aria-hidden=\"true\"></i>&nbsp;Exportar ahora</button>&nbsp;
                                 <button type=\"submit\" name=\"save_config\" class=\"btn btn-default\"><i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i>&nbsp;Guardar configuraci&oacute;n</button>&nbsp;
                                 <button type=\"button\" name=\"close\" class=\"btn btn-default\" onClick=\"javascript:show_hide('conf_exporta_";
-                // line 462
+                // line 469
                 echo $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "getId", array(), "method");
                 echo "');\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i>&nbsp;Cerrar</button>&nbsp;
                             </div>
                         </div>
                     </div>
                 </form>
+                <br><br><br>
+                <!--
                 <form class=\"form-horizontal\" role=\"form\" method=\"post\" action=\"/stations/export/";
-                // line 467
+                // line 476
                 echo $this->getAttribute($context["station"], "getStationCode", array(), "method");
                 echo "/";
                 echo $this->getAttribute((isset($context["user"]) ? $context["user"] : null), "getId", array(), "method");
                 echo "\">
                     <button type=\"submit\" name=\"export_data\" class=\"btn btn-default\"><i class=\"fa fa-table\" aria-hidden=\"true\"></i>&nbsp;Exportar ahora</button>&nbsp;
                 </form>
+                -->
             </div> <!-- /container -->
         </div> <!-- /info-sensores -->
     ";
@@ -1172,7 +1203,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['station'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 473
+            // line 483
             echo "</div><!-- /estaciones -->
 
 ";
@@ -1201,7 +1232,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
 
     public function getDebugInfo()
     {
-        return array (  1176 => 473,  1162 => 467,  1154 => 462,  1138 => 451,  1134 => 450,  1131 => 449,  1124 => 446,  1120 => 445,  1117 => 444,  1114 => 442,  1107 => 440,  1095 => 438,  1083 => 436,  1081 => 435,  1078 => 434,  1074 => 433,  1070 => 432,  1067 => 431,  1064 => 430,  1061 => 428,  1054 => 426,  1042 => 424,  1030 => 422,  1028 => 421,  1025 => 420,  1020 => 419,  1018 => 418,  1014 => 417,  1011 => 416,  1008 => 414,  1001 => 412,  987 => 410,  973 => 408,  971 => 407,  968 => 406,  963 => 405,  961 => 404,  957 => 403,  951 => 399,  939 => 397,  927 => 395,  925 => 394,  921 => 392,  913 => 390,  905 => 388,  903 => 387,  899 => 385,  891 => 383,  883 => 381,  881 => 380,  870 => 378,  860 => 377,  857 => 376,  849 => 374,  841 => 372,  839 => 371,  834 => 369,  821 => 358,  815 => 357,  801 => 355,  787 => 353,  784 => 352,  780 => 351,  770 => 350,  756 => 341,  752 => 339,  746 => 337,  743 => 336,  740 => 335,  738 => 334,  732 => 332,  729 => 331,  726 => 330,  724 => 329,  722 => 328,  717 => 326,  713 => 325,  708 => 323,  699 => 320,  696 => 319,  693 => 318,  690 => 317,  686 => 316,  681 => 313,  668 => 311,  664 => 310,  652 => 300,  650 => 299,  647 => 298,  635 => 297,  615 => 290,  604 => 282,  600 => 281,  596 => 280,  588 => 277,  580 => 274,  572 => 271,  564 => 268,  556 => 262,  553 => 261,  540 => 253,  532 => 250,  524 => 247,  516 => 244,  508 => 238,  505 => 237,  495 => 229,  491 => 228,  487 => 227,  481 => 224,  473 => 221,  465 => 215,  462 => 214,  456 => 212,  453 => 211,  447 => 209,  445 => 208,  441 => 207,  430 => 198,  418 => 197,  389 => 182,  385 => 181,  379 => 178,  373 => 175,  367 => 172,  361 => 169,  348 => 159,  342 => 156,  336 => 153,  330 => 150,  316 => 139,  312 => 138,  306 => 135,  296 => 127,  294 => 126,  291 => 125,  280 => 124,  253 => 110,  231 => 90,  220 => 89,  204 => 86,  192 => 79,  187 => 77,  185 => 76,  183 => 75,  181 => 74,  179 => 73,  175 => 71,  161 => 60,  154 => 56,  150 => 55,  146 => 54,  135 => 46,  131 => 45,  123 => 39,  120 => 38,  117 => 37,  114 => 36,  111 => 35,  108 => 34,  104 => 32,  97 => 29,  94 => 27,  92 => 26,  89 => 25,  85 => 23,  78 => 20,  75 => 18,  73 => 17,  71 => 16,  65 => 14,  62 => 12,  59 => 10,  55 => 9,  46 => 2,  34 => 1,  29 => 296,  26 => 196,  22 => 122,  19 => 88,);
+        return array (  1207 => 483,  1192 => 476,  1182 => 469,  1175 => 467,  1160 => 457,  1156 => 456,  1153 => 455,  1146 => 452,  1142 => 451,  1139 => 450,  1136 => 448,  1129 => 446,  1117 => 444,  1105 => 442,  1103 => 441,  1100 => 440,  1096 => 439,  1092 => 438,  1089 => 437,  1086 => 436,  1083 => 434,  1076 => 432,  1064 => 430,  1052 => 428,  1050 => 427,  1047 => 426,  1042 => 425,  1040 => 424,  1036 => 423,  1033 => 422,  1030 => 420,  1023 => 418,  1009 => 416,  995 => 414,  993 => 413,  990 => 412,  985 => 411,  983 => 410,  979 => 409,  973 => 405,  961 => 403,  949 => 401,  947 => 400,  943 => 398,  935 => 396,  927 => 394,  925 => 393,  921 => 391,  913 => 389,  905 => 387,  903 => 386,  892 => 384,  882 => 383,  879 => 382,  871 => 380,  863 => 378,  861 => 377,  856 => 375,  843 => 364,  837 => 363,  823 => 361,  809 => 359,  806 => 358,  802 => 357,  792 => 356,  778 => 347,  774 => 345,  768 => 343,  765 => 342,  762 => 341,  760 => 340,  754 => 338,  751 => 337,  748 => 336,  746 => 335,  744 => 334,  739 => 332,  735 => 331,  730 => 329,  721 => 326,  718 => 325,  715 => 324,  712 => 323,  708 => 322,  703 => 319,  688 => 317,  685 => 316,  682 => 315,  679 => 314,  676 => 313,  673 => 312,  670 => 311,  666 => 310,  654 => 300,  652 => 299,  649 => 298,  636 => 297,  616 => 290,  605 => 282,  601 => 281,  597 => 280,  589 => 277,  581 => 274,  573 => 271,  565 => 268,  557 => 262,  554 => 261,  541 => 253,  533 => 250,  525 => 247,  517 => 244,  509 => 238,  506 => 237,  496 => 229,  492 => 228,  488 => 227,  482 => 224,  474 => 221,  466 => 215,  463 => 214,  457 => 212,  454 => 211,  448 => 209,  446 => 208,  442 => 207,  431 => 198,  419 => 197,  390 => 182,  386 => 181,  380 => 178,  374 => 175,  368 => 172,  362 => 169,  349 => 159,  343 => 156,  337 => 153,  331 => 150,  317 => 139,  313 => 138,  307 => 135,  297 => 127,  295 => 126,  292 => 125,  281 => 124,  254 => 110,  232 => 90,  221 => 89,  205 => 86,  193 => 79,  188 => 77,  186 => 76,  184 => 75,  182 => 74,  180 => 73,  176 => 71,  162 => 60,  155 => 56,  151 => 55,  147 => 54,  136 => 46,  132 => 45,  124 => 39,  121 => 38,  118 => 37,  115 => 36,  112 => 35,  109 => 34,  105 => 32,  98 => 29,  95 => 27,  93 => 26,  90 => 25,  86 => 23,  79 => 20,  76 => 18,  74 => 17,  72 => 16,  66 => 14,  63 => 12,  60 => 10,  56 => 9,  47 => 2,  34 => 1,  29 => 296,  26 => 196,  22 => 122,  19 => 88,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -1214,7 +1245,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
 
     public function getSourceContext()
     {
-        return new Twig_Source("{% macro users_list(users) %}
+        return new Twig_Source("{% macro users_list(users, config) %}
 <h1 class=\"\">Listado de usuarios iMetos</h1>
 <table class=\"table table-striped table-hover table-bordered table-condensed\">
     <tr>
@@ -1290,7 +1321,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                                 {# listado de estaciones #}
                                 {# {{ user.getStations()|var_dump }} #}
                                 {# {{ user|var_dump }} #}
-                                {{ _self.stations_listAll(user) }}
+                                {{ _self.stations_listAll(user, config) }}
                             {# {% endif %} #}
                         </div> <!-- /conf_exporta -->
                     </td>
@@ -1510,7 +1541,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
 
 {% endmacro %}
 
-{% macro stations_listAll(user) %}
+{% macro stations_listAll(user, config) %}
 
 {% set stations = user.getStations() %}
 <div class=\"estaciones\" id=\"estaciones\">
@@ -1524,7 +1555,13 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
             <label class=\"col-xs-3 control-label\">Seleccione estaci&oacute;n:</label>
             <select class=\"form-control\" ng-model=\"select_station\">
             {% for station in stations %}
-                <option value=\"station_{{ station.getRowId() }}\">{{ station.getFName() }} - {{ station.getName() }}</option>
+                {% set q_config = station.getConfig() %}
+                {% if q_config.getEnable() %}
+                    {% set color_background = '#A1D490' %}
+                {% else %}
+                    {% set color_background = 'white' %}
+                {% endif %}
+                <option value=\"station_{{ station.getRowId() }}\" style=\"background-color: {{ color_background }}\">{{ station.getFName() }} - {{ station.getName() }}</option>
             {% endfor %}
             </select>
         </div>
@@ -1617,8 +1654,8 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                                     <!-- Tipo de archivo a exportar -->
                                     <div class=\"form-group\">
                                         <label for=\"{{ label }}\">Exportar a tipo de archivo:</label><br>
-                                        {% set tipos_archivos = json_decode(config_php.TIPOS_ARCHIVOS) %}
-                                        {% for key_tipo_archivo, tipo_archivo in tipos_archivos %}
+                                        {% set tipos_archivos = config.TIPOS_ARCHIVOS|json_decode %}
+                                        {% for key_tipo_archivo, tipo_archivo in tipos_archivos|objectFilter %}
                                             <label class=\"radio-inline\">
                                             {% if q_config.getTipoArchivo() == key_tipo_archivo %}
                                                 <input class=\"todos\" type=\"radio\" name=\"tipo_archivo\" id=\"archivo_{{ key_tipo_archivo }}\" value=\"{{ key_tipo_archivo }}\" checked=\"\" {{ disabled }}><label for=\"{{ label }}\">{{ tipo_archivo }}</label>
@@ -1628,11 +1665,11 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                                             </label>
                                         {% endfor %}
                                     </div><!-- form-grupo -->
-                                    {# }Separador de columnas #}
+                                    {# Separador de columnas #}
                                     <div class=\"form-group\">
                                         <label for=\"{{ label }}\">Separar columnas por:</label><br>
-                                        {% set separadores = json_decode(config_php.SEPARADORES) %}
-                                        {% for key_separador, separador in separadores %}
+                                        {% set separadores = config.SEPARADORES|json_decode %}
+                                        {% for key_separador, separador in separadores|objectFilter %}
                                             <label class=\"radio-inline\">
                                             {% if q_config.getSeparador() == key_separador %}
                                                 <input class=\"todos\" type=\"radio\" id=\"coma\" name=\"separador\" value=\"{{ key_separador }}\" checked=\"\" {{ disabled }}>&nbsp;<label for=\"{{ label }}\">{{ separador }}</label>
@@ -1658,7 +1695,7 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                                     </div><!-- /form-group -->
                                     {# Nombre de archivo dde salida #}
                                     <div class=\"form-group\">
-                                        <label for=\"{{ label }}\">Nombre de archivo (sin extension):</label><br>
+                                        <label for=\"{{ label }}\">Nombre de archivo (sin extensi&oacute;n):</label><br>
                                         <input class=\"todos\" type=\"text\" id=\"archivo\" name=\"archivo\" value=\"{{ q_config.getNombreArchivo() }}\" size=\"40\" maxlength=\"50\" {{ disabled }}>
                                     </div>
                                     {# Ubicacion web del archivo #}
@@ -1674,15 +1711,19 @@ class __TwigTemplate_23e700dff3ce499dee472036f735c61df045025b2652f26c1d0de62b086
                         <div class=\"col-md-4 text-right\"></div>
                         <div class=\"col-md-8\">
                             <div class=\"pull-right\">
+                                <button type=\"button\" name=\"export_data\" class=\"btn btn-default\" ng-click=\"form_new('POST','/stations/export/{{ station.getStationCode() }}/{{ user.getId() }}')\"><i class=\"fa fa-table\" aria-hidden=\"true\"></i>&nbsp;Exportar ahora</button>&nbsp;
                                 <button type=\"submit\" name=\"save_config\" class=\"btn btn-default\"><i class=\"fa fa-floppy-o\" aria-hidden=\"true\"></i>&nbsp;Guardar configuraci&oacute;n</button>&nbsp;
                                 <button type=\"button\" name=\"close\" class=\"btn btn-default\" onClick=\"javascript:show_hide('conf_exporta_{{ user.getId() }}');\"><i class=\"fa fa-times\" aria-hidden=\"true\"></i>&nbsp;Cerrar</button>&nbsp;
                             </div>
                         </div>
                     </div>
                 </form>
+                <br><br><br>
+                <!--
                 <form class=\"form-horizontal\" role=\"form\" method=\"post\" action=\"/stations/export/{{ station.getStationCode() }}/{{ user.getId() }}\">
                     <button type=\"submit\" name=\"export_data\" class=\"btn btn-default\"><i class=\"fa fa-table\" aria-hidden=\"true\"></i>&nbsp;Exportar ahora</button>&nbsp;
                 </form>
+                -->
             </div> <!-- /container -->
         </div> <!-- /info-sensores -->
     {% endfor %}

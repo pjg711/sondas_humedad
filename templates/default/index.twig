@@ -1,5 +1,7 @@
 {% extends "base.twig" %}
-{% block title %}{{ config_php.TITULO }}{% endblock %}
+{% import "macros/m_login.twig" as m_login %}
+{% import "macros/m_general.twig" as m_users %}
+{% block title %}{{ config.TITULO }}{% endblock %}
 {% block head %}{{ parent() }}{% endblock %}
 {% block content %}
     <!-- informacion de login -->
@@ -11,7 +13,7 @@
                     <!-- Primer panel admin -->
                     {{ m_users.new_user() }}
                     {% if users is defined %}
-                        {{ m_users.users_list(users) }}
+                        {{ m_users.users_list(users, config) }}
                     {% endif %}
                 </div>
             </div>
@@ -21,7 +23,7 @@
                     <!-- listado de usuarios -->
                     <!-- Primer panel -->
                     {% if users is defined %}
-                        {{ m_users.users_list(users) }}
+                        {{ m_users.users_list(users, config) }}
                     {% endif %}
                 </div>
             </div>

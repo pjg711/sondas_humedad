@@ -39,15 +39,15 @@ class Config_Station
      * @param type $archivo
      */
     function __construct($userid='',$f_station_code='',
-                        $enable='',$sensores='',$periodo='',
-                        $periodo_fecha_inicial='',
-                        $periodo_fecha_final='',
-                        $periodo_dias='',
-                        $tipo_archivo='',
-                        $separador='',
-                        $encabezado='',
-                        $archivo='',
-                        $ubicacion_web='')
+        $enable='',$sensores='',$periodo='',
+        $periodo_fecha_inicial='',
+        $periodo_fecha_final='',
+        $periodo_dias='',
+        $tipo_archivo='',
+        $separador='',
+        $encabezado='',
+        $archivo='',
+        $ubicacion_web='')
     {
         if($sensores=='')
         {
@@ -174,6 +174,15 @@ class Config_Station
     }
     /**
      *
+     */
+    /*
+    public function getTipoArchivo2()
+    {
+        return $this->tipo_archivo2;
+    }
+    */
+    /**
+     *
      * @return type
      */
     public function getSeparador()
@@ -211,7 +220,7 @@ class Config_Station
      */
     public function getUbicacionWeb()
     {
-        return $this->ubicacion_web;
+        return $this->ubicacion_web.'.'.$this->tipo_archivo;
     }
     /**
      *
@@ -367,11 +376,9 @@ class Config_Station
                     //$ubicacion_web = "";
                     $ubicacion_web = PROTOCOLO.WWW_ROOT."/".TEMP."/".$archivo;
                 }
-                $q_config = new Config_Station($userid,$f_station_code,$enable,$sensores,$periodo,
-                        $periodo_fecha_inicial,
-                        $periodo_fecha_final,
-                        $periodo_dias,$tipo_archivo,$separador,$encabezado,
-                        $archivo,$ubicacion_web);
+                $q_config = new Config_Station($userid,$f_station_code,$enable,$sensores,
+                        $periodo,$periodo_fecha_inicial,$periodo_fecha_final,$periodo_dias,
+                        $tipo_archivo,$separador,$encabezado,$archivo,$ubicacion_web);
                 return $q_config;
             }
         }

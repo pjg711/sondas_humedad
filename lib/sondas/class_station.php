@@ -1133,13 +1133,12 @@ class Station
      * @param type $station_code
      * @return boolean
      */
-    public static function export_data($userid=0,$station_code=0)
+    public static function export_data( $userid=0, $station_code=0 )
     {
         $user = User::load($userid);
-        if($user->getEnableMySQL())
+        if( $user->getEnableMySQL() )
         {
-            //echo "pase por aca<br>";
-            $BD = new IMETOS($user->getIdMySQL(), $user->getServerMySQL(), $user->getDatabaseMySQL(), $user->getUserMySQL(), $user->getPasswMySQL());
+            $BD = new IMETOS( $user->getIdMySQL(), $user->getServerMySQL(), $user->getDatabaseMySQL(), $user->getUserMySQL(), $user->getPasswMySQL() );
             $station = Station::load($BD, $station_code, false, $userid);
             $station->loadSensors($BD);
             $stationSensorsList = $station->getAvailableSensors();
@@ -1148,23 +1147,23 @@ class Station
             $datas=array();
             $enca1="";
             $enca2="FECHA";
-            list($querys,$enca1,$enca2)=$q_config->runQuery($BD, $station);
-            if(!empty($querys))
+            list($querys,$enca1,$enca2) = $q_config->runQuery($BD, $station);
+            if( !empty($querys) )
             {
-                foreach($querys as $key_query => $query)
+                foreach( $querys as $key_query => $query )
                 {
-                    if($BD->sql_select($query, $results))
+                    if( $BD->sql_select($query, $results) )
                     {
-                        while($row=$results->fetch(PDO::FETCH_ASSOC))
+                        while( $row=$results->fetch(PDO::FETCH_ASSOC) )
                         {
-                            $datas[$row['f_read_time']][$key_query]=$row;
+                            $datas[$row['f_read_time']][$key_query] = $row;
                         }
                     }
                 }
                 // grabo el archivo
-                $archivo = TEMPORALES.$q_config->getNombreArchivo();
+                $archivo = TEMPORALES.$q_config->getNombreArchivo().".".$q_config->getTipoArchivo();
                 $fp=fopen($archivo,'w');
-                if($q_config->getEncabezado())
+                if( $q_config->getEncabezado() )
                 {
                     fwrite($fp,$enca1."\n");
                     fwrite($fp,$enca2."\n");
@@ -1178,11 +1177,11 @@ class Station
                         {
                             if($key_valor2!='f_read_time')
                             {
-                                $cadena.=$valor2.chr($q_config->getSeparador2());
+                                $cadena .= $valor2.chr($q_config->getSeparador2());
                             }
                         }
                     }
-                    if(substr($cadena,-(strlen(chr($q_config->getSeparador2())))==chr($q_config->getSeparador2())))
+                    if( substr($cadena,-(strlen(chr($q_config->getSeparador2()))) == chr($q_config->getSeparador2())) )
                     {
                         $cadena=substr($cadena,0,-(strlen(chr($q_config->getSeparador2()))));
                     }
@@ -1190,20 +1189,20 @@ class Station
                 }
                 fclose($fp);
                 // se creo el archivo
-                if($last_id=Log::add($userid,'export_data',$archivo))
+                if( $last_id=Log::add($userid,'export_data',$archivo) )
                 {
                     return $last_id;
-                }else
+                } else
                 {
-                    echo "No se puedo insertar el mensaje en el log<br>";
+                    $this->error .= "No se puedo insertar el mensaje en el log.";
                 }
-            }else
+            } else
             {
-                echo "Error en las consultas.<br>";
+                $this->error .= "Error en las consultas.";
             }
-        }else
+        } else
         {
-            echo "No existe la información de la conexión para la consulta.<br>";
+            $this->error .= "No existe la información de la conexión para la consulta.";
         }
         return false;
     }

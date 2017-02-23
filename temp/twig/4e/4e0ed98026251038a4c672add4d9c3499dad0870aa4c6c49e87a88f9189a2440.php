@@ -20,35 +20,31 @@ class __TwigTemplate_27258e22b63ac300539ea6edb896cd91ae86a27cba68765bc32e3f3d686
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        $context["m_login"] = $this->loadTemplate("macros/m_login.twig", "base.twig", 1);
-        // line 2
-        $context["m_users"] = $this->loadTemplate("macros/m_general.twig", "base.twig", 2);
-        // line 3
         echo "<!doctype html>
 <html ng-app=\"sondasApp\">
 <head>
     ";
-        // line 6
+        // line 4
         $this->displayBlock('head', $context, $blocks);
-        // line 43
+        // line 41
         echo "</head>
 <body ng-controller=\"mainController\">
     ";
-        // line 45
+        // line 43
         $this->displayBlock('content', $context, $blocks);
-        // line 46
+        // line 44
         echo "    ";
         $this->displayBlock('footer', $context, $blocks);
-        // line 54
+        // line 52
         echo "</body>
 </html>
 ";
     }
 
-    // line 6
+    // line 4
     public function block_head($context, array $blocks = array())
     {
-        // line 7
+        // line 5
         echo "    <meta name=\"google-site-verification\" content=\"4ICx_x8s8IurLmbe5UCa5hd97QlC3F2zfv8AyZvbLts\">
     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\">
     <meta http-equiv=\"cache-control\" content=\"max-age=0\">
@@ -60,7 +56,7 @@ class __TwigTemplate_27258e22b63ac300539ea6edb896cd91ae86a27cba68765bc32e3f3d686
     <meta name=\"keywords\" content=\"Seedmech alerta sondas\">
     <meta name=\"description\" content=\"Sistema para sondas de humedad de suelo\">
     <title>";
-        // line 17
+        // line 15
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
     <!-- bootstrap -->
@@ -84,43 +80,43 @@ class __TwigTemplate_27258e22b63ac300539ea6edb896cd91ae86a27cba68765bc32e3f3d686
     <!-- fin pikaday -->
     <!-- estilos propios -->
     <link rel=\"stylesheet\" type=\"text/css\" href=\"";
-        // line 38
+        // line 36
         echo $this->getAttribute((isset($context["config"]) ? $context["config"] : null), "PROTOCOLO", array());
         echo $this->getAttribute((isset($context["config"]) ? $context["config"] : null), "WWW_ROOT", array());
         echo "/templates/";
         echo $this->getAttribute((isset($context["config"]) ? $context["config"] : null), "TEMPLATE", array());
         echo "/css/styles.css\">
     <!-- <script src=\"/templates/";
-        // line 39
+        // line 37
         echo $this->getAttribute((isset($context["config"]) ? $context["config"] : null), "TEMPLATE", array());
         echo "/js/functions.js\"></script> -->
     <script src=\"/templates/";
-        // line 40
+        // line 38
         echo $this->getAttribute((isset($context["config"]) ? $context["config"] : null), "TEMPLATE", array());
         echo "/js/app.js\"></script>
     <!-- fin estilos propios -->
     ";
     }
 
-    // line 17
+    // line 15
     public function block_title($context, array $blocks = array())
     {
-        echo $this->getAttribute((isset($context["config_php"]) ? $context["config_php"] : null), "TITULO", array());
+        echo $this->getAttribute((isset($context["config"]) ? $context["config"] : null), "TITULO", array());
     }
 
-    // line 45
+    // line 43
     public function block_content($context, array $blocks = array())
     {
     }
 
-    // line 46
+    // line 44
     public function block_footer($context, array $blocks = array())
     {
-        // line 47
+        // line 45
         echo "    <div class=\"navbar navbar-fixed-bottom\">
         <div class=\"row\" style=\"width: 100%; height: 50px; border:1px solid gray; background-color: #dadada; color: #0086b3; vertical-align: middle;\">
             <div class=\"col-md-4 text-right\"><a href=\"";
-        // line 49
+        // line 47
         echo $this->getAttribute($this->getAttribute((isset($context["config"]) ? $context["config"] : null), "pagina", array()), "WEB", array());
         echo "\"><img src=\"";
         echo $this->getAttribute((isset($context["config"]) ? $context["config"] : null), "PROTOCOLO", array());
@@ -129,7 +125,7 @@ class __TwigTemplate_27258e22b63ac300539ea6edb896cd91ae86a27cba68765bc32e3f3d686
         echo $this->getAttribute((isset($context["config"]) ? $context["config"] : null), "TEMPLATE", array());
         echo "/img/seedmech.png\"></a></div>
             <div class=\"col-md-8 text-left\">";
-        // line 50
+        // line 48
         echo $this->getAttribute($this->getAttribute((isset($context["config"]) ? $context["config"] : null), "pagina", array()), "PIE", array());
         echo "</div>
         </div>
@@ -142,14 +138,9 @@ class __TwigTemplate_27258e22b63ac300539ea6edb896cd91ae86a27cba68765bc32e3f3d686
         return "base.twig";
     }
 
-    public function isTraitable()
-    {
-        return false;
-    }
-
     public function getDebugInfo()
     {
-        return array (  133 => 50,  124 => 49,  120 => 47,  117 => 46,  112 => 45,  106 => 17,  99 => 40,  95 => 39,  88 => 38,  64 => 17,  52 => 7,  49 => 6,  43 => 54,  40 => 46,  38 => 45,  34 => 43,  32 => 6,  27 => 3,  25 => 2,  23 => 1,);
+        return array (  129 => 48,  120 => 47,  116 => 45,  113 => 44,  108 => 43,  102 => 15,  95 => 38,  91 => 37,  84 => 36,  60 => 15,  48 => 5,  45 => 4,  39 => 52,  36 => 44,  34 => 43,  30 => 41,  28 => 4,  23 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -162,9 +153,7 @@ class __TwigTemplate_27258e22b63ac300539ea6edb896cd91ae86a27cba68765bc32e3f3d686
 
     public function getSourceContext()
     {
-        return new Twig_Source("{% import \"macros/m_login.twig\" as m_login %}
-{% import \"macros/m_general.twig\" as m_users %}
-<!doctype html>
+        return new Twig_Source("<!doctype html>
 <html ng-app=\"sondasApp\">
 <head>
     {% block head %}
@@ -178,7 +167,7 @@ class __TwigTemplate_27258e22b63ac300539ea6edb896cd91ae86a27cba68765bc32e3f3d686
     <meta name=\"author\" content=\"Pablo Julian Garcia\">
     <meta name=\"keywords\" content=\"Seedmech alerta sondas\">
     <meta name=\"description\" content=\"Sistema para sondas de humedad de suelo\">
-    <title>{% block title %}{{ config_php.TITULO }}{% endblock %}</title>
+    <title>{% block title %}{{ config.TITULO }}{% endblock %}</title>
     <!-- bootstrap -->
     <link rel=\"stylesheet\" type=\"text/css\" href=\"/lib/vendor/twbs/bootstrap/dist/css/bootstrap.css\">
     <script src=\"/lib/vendor/components/jquery/jquery.js\"></script>

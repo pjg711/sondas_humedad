@@ -103,38 +103,38 @@ class User
      * @param type $database_mysql
      * @param type $enable_mysql
      */
-    function __construct($id=0,$is_admin=0,$username='',$mails_imetos='',$enable_user='',$enable_report=0,
-            $id_ftp=0,$user_ftp='',$passw_ftp='',$server_ftp='',$remotedir_ftp='',$mails_ftp='',$enable_ftp=1,
-            $id_mysql=0,$user_mysql='',$passw_mysql='',$server_mysql='',$database_mysql='',$enable_mysql=1,
-            $reports='',$stations="")
+    function __construct($id=0, $is_admin=0, $username='', $mails_imetos='', $enable_user='', $enable_report=0,
+            $id_ftp=0, $user_ftp='', $passw_ftp='', $server_ftp='', $remotedir_ftp='', $mails_ftp='', $enable_ftp=1,
+            $id_mysql=0, $user_mysql='', $passw_mysql='', $server_mysql='', $database_mysql='', $enable_mysql=1,
+            $reports='', $stations="")
     {
-        $this->id=$id;
-        $this->is_admin=$is_admin;
-        $this->user_name=$username;
-        $this->mails_imetos=$mails_imetos;
-        $this->enable_user=$enable_user;
+        $this->id = $id;
+        $this->is_admin = $is_admin;
+        $this->user_name = $username;
+        $this->mails_imetos = $mails_imetos;
+        $this->enable_user = $enable_user;
         //
-        $this->id_ftp=$id_ftp;
-        $this->user_ftp=$user_ftp;
-        $this->passw_ftp=$passw_ftp;
-        $this->server_ftp=$server_ftp;
-        $this->remotedir_ftp=$remotedir_ftp;
-        $this->mails_ftp=$mails_ftp;
-        $this->enable_ftp=$enable_ftp;
+        $this->id_ftp = $id_ftp;
+        $this->user_ftp = $user_ftp;
+        $this->passw_ftp = $passw_ftp;
+        $this->server_ftp = $server_ftp;
+        $this->remotedir_ftp = $remotedir_ftp;
+        $this->mails_ftp = $mails_ftp;
+        $this->enable_ftp = $enable_ftp;
         //
-        $this->id_mysql=$id_mysql;
-        $this->user_mysql=$user_mysql;
-        $this->passw_mysql=$passw_mysql;
-        $this->server_mysql=$server_mysql;
-        $this->database_mysql=$database_mysql;
-        $this->enable_mysql=$enable_mysql;
+        $this->id_mysql = $id_mysql;
+        $this->user_mysql = $user_mysql;
+        $this->passw_mysql = $passw_mysql;
+        $this->server_mysql = $server_mysql;
+        $this->database_mysql = $database_mysql;
+        $this->enable_mysql = $enable_mysql;
         //
-        $this->Reports=$reports;
-        $this->enable_report=$enable_report;
+        $this->Reports = $reports;
+        $this->enable_report = $enable_report;
         //
-        $this->Stations=$stations;
+        $this->Stations = $stations;
         //
-        $this->error="";
+        $this->error = "";
     }
     /**
      *
@@ -350,10 +350,11 @@ class User
                     FROM    `" . SESSION_NAME . "users`
                     WHERE   `usertype`='imetos' AND
                             `id`={$userid} LIMIT 1";
+            //echo "query-->{$query}<br>";
             if(!sql_select($query, $results))
             {
                 unset($results);
-                $this->error="No se pudo leer la lista de usuarios";
+                //$this->error="No se pudo leer la lista de usuarios";
                 return false;
             }
             if($user = $results->fetch(PDO::FETCH_ASSOC))

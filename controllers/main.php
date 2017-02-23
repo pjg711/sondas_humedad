@@ -3,19 +3,16 @@ include 'twig.php';
 $template = $twig -> loadTemplate('index.twig');
 
 $params['config'] = array(
-	'PROTOCOLO' => PROTOCOLO,
-	'WWW_ROOT' => WWW_ROOT,
-	'PATH_ROOT' => PATH_ROOT,
-	'TEMPLATE' => TEMPLATE,
-	'pagina' => array(
+				'PROTOCOLO' => PROTOCOLO,
+				'WWW_ROOT' => WWW_ROOT,
+				'PATH_ROOT' => PATH_ROOT,
+				'TEMPLATE' => TEMPLATE,
+				'TIPOS_ARCHIVOS' => TIPOS_ARCHIVOS,
+				'SEPARADORES' => SEPARADORES,
+				'SEPARADORES2' => SEPARADORES2,
+				'pagina' => array(
 						'WEB' => WEB,
             'PIE' => CONTACTO)
-);
-
-$params['config_php'] = array(
-        'TIPOS_ARCHIVOS' => TIPOS_ARCHIVOS,
-        'SEPARADORES' => SEPARADORES,
-        'SEPARADORES2' => SEPARADORES2
 );
 
 $params['Login'] = array(

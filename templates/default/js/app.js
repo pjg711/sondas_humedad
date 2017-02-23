@@ -24,37 +24,53 @@ app.controller("mainController", function($scope, $http, $location, $anchorScrol
             }
         }
     };
+    $scope.export_data = function (input, station) {
 
-    $scope.station_active = function (activar, station) {
-        console.log("station-->"+station);
+    };
+    $scope.station_active = function (input, station) {
+        //console.log("station-->"+station);
         var obj=document.getElementById(station);
-        var objs=obj.getElementsByClassName('todos'); 
+        var objs=obj.getElementsByClassName('todos');
         var objs2=obj.getElementsByClassName('sensores-todos');
         var objs3=obj.getElementsByClassName('sensores');
-        if (activar.checked) {
+        //console.log("Cantidad de todos--->"+objs.length);
+        input.checked = !input.checked;
+        if (input.checked) {
             // activo
             var value = false;
             var bcolor = '#000000';
         } else {
             // desactivo
             var value = true;
-            var bcolor='#dadada';
+            var bcolor = '#dadada';
         }
         for (var i=0; i<objs.length; i++) {
-            if (objs[i].id!='activar' && objs[i].type!='hidden') {
+            if (objs[i].id != 'activar' && objs[i].type != 'hidden') {
                 objs[i].disabled = value;
             } else {
                 objs[i].disabled = false;
             }
         }
-        for (var i=0;i<objs2.length;i++) {
+        for (var i=0; i<objs2.length; i++) {
             objs2[i].disabled = value;
         }
         objs3[0].disabled = value;
         //
         var objs4 = obj.getElementsByTagName('label');
         for (var i=0; i<objs4.length; i++) {
-            objs4[i].style.color=bcolor;
+            objs4[i].style.color = bcolor;
         }
+    };
+    $scope.form_new = function (method, action, atrib_name, atrib_value) {
+        var form = document.createElement('form');
+        form.setAttribute('method', method);
+        form.setAttribute('action', action);
+        var myvar = document.createElement('input');
+        myvar.setAttribute('name', atrib_name);
+        myvar.setAttribute('type', 'hidden');
+        myvar.setAttribute('value', atrib_value);
+        form.appendChild(myvar);
+        document.body.appendChild(form);
+        form.submit();
     };
 });
